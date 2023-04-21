@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Canvas } from '@react-three/fiber';
 import './App.css';
+
+import ReactDOM from 'react-dom'
+import Box from './components/box';
+import { OrbitControls } from '@react-three/drei';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Cloudfare DEPLOY TEST v2
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+     <Canvas
+      style={{ height: 800, width: '100%' }}
+      camera={{ fov: 55, position: [0, 4, 4] }}
+    >
+      <ambientLight intensity={0.1} />
+      <pointLight position={[5, 5, 5]} />
+      <Box  position={[0,0,0]} />
+      <Box  position={[0,2,0]} />
+      <Box  position={[0,0,2]} />
+      <OrbitControls />
+    </Canvas>
     </div>
-  );
+  )
 }
+
+ReactDOM.render(<App />, document.getElementById('root'))
 
 export default App;
